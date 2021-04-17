@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{title}}</title>
+	<link rel="stylesheet" href="{% static 'fonts/font_awesome/css/all.min.css' %}">
+								
+	<link rel="stylesheet" href="{% static 'fonts/gilroy/stylesheet.css' %}">
+
+	<link rel="stylesheet" href= "{% static 'css/main.css' %}">
+</head>
+<body>
+	<section class="header">
+		<div class="container">
+			<div class="navbar row">	
+				<div class="menu df aic">
+					<a href="/" class="menu__item">Главная</a>
+				</div>
+				<div class="auth-btn df aic">
+					<a class="login">
+						Sing In
+					</a>
+					<a class="btn-2 sing-up">
+						Sing Up
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="main-section">
+		<div class="container">
+			<div class="wrap">
+				<aside class="aside">
+					<h2 class="title">Категории</h2>
+					<div class="list_categories">
+						<a href="#" class="list_categories_item">Все</a>
+						<a href="#" class="list_categories_item">Аниме</a>
+						<a href="#" class="list_categories_item">Моргин</a>
+						<a href="#" class="list_categories_item">Бравл старс</a>
+						<a href="#" class="list_categories_item">Влад Бумага</a>
+						<a href="#" class="list_categories_item">Майнкрафт</a>
+					</div>
+
+					<a href="#" class="add_post df aic">
+						<span>Добавить новость</span>
+						<em class="far fa-plus-circle"></em>
+					</a>
+				</aside>
+				<main class="main">
+					<h2 class="title title_all_posts">Список новостей</h2>
+
+					<div class="cards">
+						{% for item in news %}
+						<div class="card">
+							<a href="#" class="card__category">{{ item.category.title }} </a>
+							<img src="media/{{ item.photo }}" class="card__img">
+							
+							<div class="card__wrap">
+								<time class="card__date" datetime="2077-02-31">{{item.created_at|date:"Y-m-d H:i:s"}}</time>
+								<div class="card__title">
+									{{ item.title }}
+								</div>
+								<div class="card__bottom">
+									<div class="card__text">
+										{{ item.content }}
+									</div>
+									<a class="card__btn" href="/">
+										Читать
+									</a>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+
+				</main>
+			</div>
+		</div>	
+	</section>
+</body>
+</html>
